@@ -47,7 +47,7 @@ __
 __
 __
 __
-9
+10
 Average CPU Rate
 cpurate
 1
@@ -183,6 +183,21 @@ real
 0
 1/S
 Frequency
+Percentage of Active Cores
+PercentActive
+1
+Percentage of active cores in the racks
+simple
+real
+1
++
+0
++Inf
+[ ; ]
+0
+0
+-
+Dimensionless
 0
 0
 0
@@ -297,7 +312,7 @@ Frequency
 1
 external
 0
-0
+1
 0
 
 

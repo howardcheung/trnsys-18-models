@@ -25,6 +25,7 @@
 ! *** Model Inputs 
 ! *** 
 !			Average CPU Rate	- [0;+Inf]
+!           Percentage of Active Cores	- [0;+Inf]
 
 ! *** 
 ! *** Model Outputs 
@@ -73,6 +74,7 @@
 
 !    INPUTS
       DOUBLE PRECISION Average_CPU_Rate
+      DOUBLE PRECISION Percentage_of_Active_Cores
 
 !    OUTPUTS
       DOUBLE PRECISION Power_consumption
@@ -143,6 +145,7 @@
 
 
       Average_CPU_Rate = GetInputValue(1)
+      Percentage_of_Active_Cores = GetInputValue(2)
 
 	
    !Check the Parameters for Problems (#,ErrorType,Text)
