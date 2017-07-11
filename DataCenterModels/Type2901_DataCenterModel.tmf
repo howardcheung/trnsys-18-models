@@ -1,0 +1,326 @@
+#ESI!
+4.0
+Data Center Rack Model
+0
+
+Howard Cheung, Shengwei Wang
+The Hong Kong Polytechnic University
+1
+
+2
+2
+July 11, 2017
+
+July 11, 2017
+1
+
+noowner
+__
+__
+__
+5
+This data center model simulates the power consumption of multiple racks with a number of processors/cores under different processor utilization rates following the rack power consumption model in Fang et al. (2017).
+
+References:
+
+Q. Fang, J. Wang, Q. Gong, and M. Song, “Thermal-aware Energy Management of HPC Data Center Via Two-time-scale Control,” IEEE Trans. Ind. Inform., no. 99, pp. 1–1, 2017.
+0
+0
+0
+0
+0
+0
+__
+__
+__
+1
+
+0
+__
+__
+__
+__
+0
+0
+__
+
+__
+__
+__
+9
+Average CPU Rate
+cpurate
+1
+The instantaneous average processor utilization rate among all processors within the data center. It should usually be a dimensionless value between 0 and 1 unless one decides to overuse the processors.
+simple
+real
+1
++
+0
++Inf
+[ ; ]
+0
+0
+-
+Dimensionless
+Power consumption
+power
+1
+Total power consumptino of the racks
+simple
+real
+2
++
+0
++Inf
+[ ; ]
+0
+0
+W
+Power
+Idle power
+Pon
+1
+Power consumption of each core/processor when the processor utilization rate is zero
+simple
+real
+3
++
+0
++Inf
+[ ; ]
+15
+0
+W
+Power
+Standby power
+Pstd
+1
+Standby power consumption of each processor/core
+simple
+real
+3
++
+0
++Inf
+[ ; ]
+2
+0
+W
+Power
+Coefficient of frequency for power
+beta
+1
+The coefficient of a cubic frequency term to calculate the effect of cpu frequency to power consumption for each core.
+simple
+real
+3
++
+0
++Inf
+[ ; ]
+1.8
+0
+W
+Power
+Number of racks
+N
+1
+Number of racks
+simple
+integer
+3
++
+0
++Inf
+[ ; ]
+28
+0
+-
+Dimensionless
+Number of cores
+S
+1
+
+simple
+integer
+3
++
+0
++Inf
+[ ; ]
+336
+0
+-
+Dimensionless
+Maximum processor frequency
+fmax
+1
+Maximum processor frequency
+simple
+real
+3
++
+0
++Inf
+[ ; ]
+3000000000
+0
+1/S
+Frequency
+Minimum processor frequency
+fmin
+1
+Minimum processor frequency
+simple
+real
+3
++
+0
++Inf
+[ ; ]
+0
+0
+1/S
+Frequency
+0
+0
+0
+0
+0
+
+*** trnModel specific properties ***
+9999
+2901
+
+9
+
+
+
+0
+
+
+
+0
+
+
+
+0
+
+
+
+0
+
+
+
+0
+
+
+
+0
+
+
+
+0
+
+
+
+0
+
+
+
+0
+9
+
+
+
+0
+
+
+0
+
+
+
+0
+
+
+0
+
+
+
+0
+
+
+0
+
+
+
+0
+
+
+0
+
+
+
+0
+
+
+0
+
+
+
+0
+
+
+0
+
+
+
+0
+
+
+0
+
+
+
+0
+
+
+0
+
+
+
+0
+
+
+0
+1
+external
+0
+0
+0
+
+
+1
+100
+0
+0
+0
+
+
+1
+100
+0
+6
+0
+
+
+1
+100
+-1
+-1
+0
+
+
+1
+100
