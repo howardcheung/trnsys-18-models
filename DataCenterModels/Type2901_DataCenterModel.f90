@@ -74,6 +74,12 @@
 !    INPUTS
       DOUBLE PRECISION Average_CPU_Rate
 
+!    OUTPUTS
+      DOUBLE PRECISION Power_consumption
+
+!    INTERNAL VARIABLES
+      DOUBLE PRECISION Power_cpu  ! Power consumption of each core
+
 !-----------------------------------------------------------------------------------------------------------------------
 
 !-----------------------------------------------------------------------------------------------------------------------
@@ -220,6 +226,14 @@
 	!Sample Code: DTDT2=-2.*T1+11.*T2+21.
 	!Sample Code: Call SetNumericalDerivative(1,DTDT1)
 	!Sample Code: Call SetNumericalDerivative(2,DTDT2)
+
+    !Fix the average cpu rate if it is not within the range
+    If ( Average_CPU_Rate < Minimum_processor_frequency / Maximum_processor_frequency ) Then
+        Average_CPU_Rate = Minimum_processor_frequency / Maximum_processor_frequency
+    EndIf
+
+    !Calcualte the power of each core
+    Power_cpu=Average_CPU_Rate
 
 !-----------------------------------------------------------------------------------------------------------------------
 
