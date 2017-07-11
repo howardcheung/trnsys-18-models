@@ -236,7 +236,7 @@
         EndIf
 
     !Calculate the power of each core
-        Power_cpu=Average_CPU_Rate*Coefficient_of_frequency_for_power+Idle_power
+        Power_cpu=Average_CPU_Rate**3*Coefficient_of_frequency_for_power+Idle_power
 
     !Calculate the total power consumption
         Power_consumption=Power_cpu*(1.0-Percentage_of_Active_Cores)+Standby_power*Percentage_of_Active_Cores
