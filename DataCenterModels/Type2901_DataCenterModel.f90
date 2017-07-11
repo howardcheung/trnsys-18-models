@@ -24,8 +24,8 @@
 ! *** 
 ! *** Model Inputs 
 ! *** 
-!			Average CPU Rate	- [0;+Inf]
-!           Percentage of Active Cores	- [0;+Inf]
+!			Average CPU Rate	[%(base 1)] [0;+Inf]
+!           Percentage of Active Cores	[%(base 1)] [0;1.0]
 
 ! *** 
 ! *** Model Outputs 
@@ -231,18 +231,22 @@
 	!Sample Code: Call SetNumericalDerivative(2,DTDT2)
 
     !Fix the average cpu rate if it is not within the range
-    If ( Average_CPU_Rate < Minimum_processor_frequency / Maximum_processor_frequency ) Then
-        Average_CPU_Rate = Minimum_processor_frequency / Maximum_processor_frequency
-    EndIf
+        If ( Average_CPU_Rate < Minimum_processor_frequency / Maximum_processor_frequency ) Then
+            Average_CPU_Rate = Minimum_processor_frequency / Maximum_processor_frequency
+        EndIf
 
-    !Calcualte the power of each core
-    Power_cpu=Average_CPU_Rate
+    !Calculate the power of each core
+        Power_cpu=Average_CPU_Rate*Coefficient_of_frequency_for_power+Idle_power
+
+    !Calculate the total power consumption
+        Power_consumption=Power_cpu*(1.0-Percentage_of_Active_Cores)+Standby_power*Percentage_of_Active_Cores
+        Power_consumption=Power_consumption*Number_of_racks*Number_of_cores
 
 !-----------------------------------------------------------------------------------------------------------------------
 
 !-----------------------------------------------------------------------------------------------------------------------
 !Set the Outputs from this Model (#,Value)
-		Call SetOutputValue(1, 0) ! Power consumption
+		Call SetOutputValue(1, Power_consumption) ! Power consumption
 
 !-----------------------------------------------------------------------------------------------------------------------
 

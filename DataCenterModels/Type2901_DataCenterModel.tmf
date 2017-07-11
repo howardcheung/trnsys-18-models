@@ -61,8 +61,8 @@ real
 [ ; ]
 0
 0
--
-Dimensionless
+% (base 1)
+Percentage
 Power consumption
 power
 1
@@ -192,12 +192,12 @@ real
 1
 +
 0
-+Inf
+1
 [ ; ]
+0.5
 0
-0
--
-Dimensionless
+% (base 1)
+Percentage
 0
 0
 0
