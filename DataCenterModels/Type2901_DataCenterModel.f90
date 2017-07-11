@@ -141,6 +141,9 @@
 	
    !Check the Parameters for Problems (#,ErrorType,Text)
    !Sample Code: If( PAR1 <= 0.) Call FoundBadParameter(1,'Fatal','The first parameter provided to this model is not acceptable.')
+        If ( Minimum_processor_frequency > Maximum_processor_frequency) Then
+            Call FoundBadParameter(1,'Fatal','Minimum processor freq. higher than its maximum.')
+        EndIf
 
    !Set the Initial Values of the Outputs (#,Value)
 		Call SetOutputValue(1, 0) ! Power consumption
