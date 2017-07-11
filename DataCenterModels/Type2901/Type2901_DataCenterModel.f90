@@ -190,6 +190,7 @@
 
 !Read the Inputs
       Average_CPU_Rate = GetInputValue(1)
+      Percentage_of_Active_Cores = GetInputValue(2)
 		
 
 	!Check the Inputs for Problems (#,ErrorType,Text)
