@@ -120,7 +120,7 @@
 
 		!Tell the TRNSYS Engine How This Type Works
 		Call SetNumberofParameters(7)           !The number of parameters that the the model wants
-		Call SetNumberofInputs(1)                   !The number of inputs that the the model wants
+		Call SetNumberofInputs(2)                   !The number of inputs that the the model wants
 		Call SetNumberofDerivatives(0)         !The number of derivatives that the the model wants
 		Call SetNumberofOutputs(1)                 !The number of outputs that the the model produces
 		Call SetIterationMode(1)                             !An indicator for the iteration mode (default=1).  Refer to section 8.4.3.5 of the documentation for more details.
