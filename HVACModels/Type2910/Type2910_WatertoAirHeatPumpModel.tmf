@@ -56,7 +56,7 @@ __
 __
 __
 __
-47
+50
 Entering Water Temperature
 SN
 1
@@ -764,6 +764,51 @@ real
 0
 -
 Dimensionless
+Leaving water temperature
+SN
+1
+Temperature of leaving water
+simple
+real
+2
++
+-Inf
++Inf
+[ ; ]
+0
+0
+C
+Temperature
+Leaving air-dry-bulb temperature
+SN
+1
+Dry-bulb temperature of the leaving air
+simple
+real
+2
++
+-Inf
++Inf
+[ ; ]
+0
+0
+C
+Temperature
+Leaving air wet-bulb temperature
+SN
+1
+Air wet-bulb temperature of the leaving air
+simple
+real
+2
++
+-Inf
++Inf
+[ ; ]
+0
+0
+C
+Temperature
 0
 0
 0
@@ -884,7 +929,7 @@ Dimensionless
 1
 100
 0
-6
+9
 0
 
 

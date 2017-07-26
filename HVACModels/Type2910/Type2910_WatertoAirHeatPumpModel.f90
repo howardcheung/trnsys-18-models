@@ -81,6 +81,9 @@
 !			Total heating capacity	kJ/hr [0;+Inf]
 !			Heating mode power consumption	kJ/hr [0;+Inf]
 !			Heat absorption in heating mode	kJ/hr [0;+Inf]
+!			Leaving water temperature	C [-Inf;+Inf]
+!			Leaving air dry-bulb temperature	C [-Inf;+Inf]
+!			Leaving air wet-bulb temperature	C [-Inf;+Inf]
 
 ! *** 
 ! *** Model Derivatives 
@@ -173,6 +176,21 @@
       DOUBLE PRECISION Cooling_power_consumption
       DOUBLE PRECISION Total_heating_capacity
       DOUBLE PRECISION Heating_power_consumption
+      DOUBLE PRECISION Total_cooling_heat_rejection
+      DOUBLE PRECISION Total_heating_heat_absoprtion
+      DOUBLE PRECISION Entering_air_humidratio
+      DOUBLE PRECISION Entering_air_enthalpy
+      DOUBLE PRECISION Entering_air_density
+      DOUBLE PRECISION Air_mass_flow
+      DOUBLE PRECISION Water_mass_flow
+      DOUBLE PRECISION Cp
+      DOUBLE PRECISION Leaving_air_temperature
+      DOUBLE PRECISION Leaving_water_temperature
+      DOUBLE PRECISION Leaving_air_enthalpy
+      DOUBLE PRECISION Leaving_air_wet_bulb_temperature
+
+!    FOR CALLING MOISTURE PROPERTIES
+      DOUBLE PRECISION psydat(9)
 
 !-----------------------------------------------------------------------------------------------------------------------
 
@@ -214,7 +232,7 @@
 		Call SetNumberofParameters(33)           !The number of parameters that the the model wants
 		Call SetNumberofInputs(7)                   !The number of inputs that the the model wants
 		Call SetNumberofDerivatives(0)         !The number of derivatives that the the model wants
-		Call SetNumberofOutputs(7)                 !The number of outputs that the the model produces
+		Call SetNumberofOutputs(10)                 !The number of outputs that the the model produces
 		Call SetIterationMode(1)                             !An indicator for the iteration mode (default=1).  Refer to section 8.4.3.5 of the documentation for more details.
 		Call SetNumberStoredVariables(0,0)                   !The number of static variables that the model wants stored in the global storage array and the number of dynamic variables that the model wants stored in the global storage array
 		Call SetNumberofDiscreteControls(0)               !The number of discrete control functions set by this model (a value greater than zero requires the user to use Solver 1: Powell's method)
@@ -402,7 +420,7 @@
       Qh_ratio = E1 + E2 * Twb_ratio + E3 * Tw_ratio + E4 * Va_ratio + E5 * Vw_ratio
       Ph_ratio = F1 + F2 * Twb_ratio + F3 * Tw_ratio + F4 * Va_ratio + F5 * Vw_ratio
 
-      !Calculate the outputs
+      !Calculate the heat pump performance
       If ( Cooling_mode.EQ.1 ) Then
         Total_cooling_capacity = Qc_ratio * Rated_total_cooling_capacity
         Sensible_cooling_capacity = Qsc_ratio * Rated_sensible_cooling_capacity
@@ -419,6 +437,39 @@
         Total_heating_capacity = 0.0
         Heating_power_consumption = 0.0
       EndIf
+      Total_cooling_heat_rejection = Total_cooling_capacity + Cooling_power_consumption
+      Total_heating_heat_absoprtion = Total_heating_capacity - Heating_power_consumption
+
+      !Calculate the properties at the air and water outlet
+      psydat(1) = 1.0
+      psydat(2) = Entering_air_dry_bulb_temperature
+      psydat(3) = Entering_air_wet_bulb_temperature
+      Call MoistAirProperties(CurrentUnit, CurrentType, 1, 1, 1, psydat, 0, 0)
+      Entering_air_humidratio = psydat(6)
+      Entering_air_enthalpy = psydat(7)
+      Entering_air_density = psydat(9)
+      Air_mass_flow = Entering_air_density * Air_volume_flow_rate
+      Water_mass_flow = 1000.0 * Water_volumetric_flow_rate
+      If ( Cooling_mode.EQ.1 ) Then
+        Cp = 3.9850 * Entering_air_humidratio + 1.005
+        Leaving_air_temperature = Entering_air_dry_bulb_temperature - Sensible_cooling_capacity / Air_mass_flow / Cp
+        Leaving_water_temperature = Total_cooling_heat_rejection / Water_mass_flow + Entering_Water_Temperature
+        Leaving_air_enthalpy = Entering_air_enthalpy - Total_cooling_capacity / Air_mass_flow
+      Else If (Heating_mode.EQ.1) Then
+        Cp = 3.9850 * Entering_air_humidratio + 1.005
+        Leaving_air_temperature = Entering_air_dry_bulb_temperature + Total_heating_capacity / Air_mass_flow / Cp
+        Leaving_water_temperature = Entering_Water_Temperature - Total_heating_heat_absoprtion / Water_mass_flow
+        Leaving_air_enthalpy = Entering_air_enthalpy + Total_heating_capacity / Air_mass_flow
+      Else
+        Leaving_air_temperature = Entering_air_dry_bulb_temperature
+        Leaving_water_temperature = Entering_Water_Temperature
+        Leaving_air_enthalpy = Entering_air_enthalpy
+      EndIf
+      psydat(1) = 1.0
+      psydat(2) = Leaving_air_temperature
+      psydat(7) = Leaving_air_enthalpy
+      Call MoistAirProperties(CurrentUnit, CurrentType, 1, 5, 1, psydat, 0, 0)
+      Leaving_air_wet_bulb_temperature = psydat(3)
 
 !-----------------------------------------------------------------------------------------------------------------------
 
@@ -427,10 +478,13 @@
 		Call SetOutputValue(1, Total_cooling_capacity) ! Total cooling capacity
 		Call SetOutputValue(2, Sensible_cooling_capacity) ! Sensible cooling capacity
 		Call SetOutputValue(3, Cooling_power_consumption) ! Cooling power consumption
-		Call SetOutputValue(4, Total_cooling_capacity + Cooling_power_consumption) ! Heat dissipation in cooling mode
+		Call SetOutputValue(4, Total_cooling_heat_rejection) ! Heat dissipation in cooling mode
 		Call SetOutputValue(5, Total_heating_capacity) ! Total heating capacity
 		Call SetOutputValue(6, Heating_power_consumption) ! Heating mode power consumption
-		Call SetOutputValue(7, Total_heating_capacity-Heating_power_consumption) ! Heat absorption in heating mode
+		Call SetOutputValue(7, Total_heating_heat_absoprtion) ! Heat absorption in heating mode
+		Call SetOutputValue(8, Leaving_water_temperature) ! Leaving water temperature
+		Call SetOutputValue(9, Leaving_air_temperature) ! Leaving air dry-bulb temperature
+		Call SetOutputValue(10, Leaving_air_wet_bulb_temperature) ! Leaving air wet-bulb temperature
 
 !-----------------------------------------------------------------------------------------------------------------------
 
