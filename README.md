@@ -1,7 +1,7 @@
 This website hosts TRNSYS 18 building component models developed based on models in the literature.
 
 # HVAC equipment models
-* [Type2910](): Modeling the power consumption of a water-to-air single-speed heat pump in both heating and cooling operation according to Tang (2014)
+* [Type2910](https://github.com/howardcheung/trnsys-18-models/tree/master/HVACModels/Type2910): Modeling the power consumption of a water-to-air single-speed heat pump in both heating and cooling operation according to Tang (2014)
 
 # Data center models
 Models for modeling of the data center. This includes
