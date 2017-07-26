@@ -393,7 +393,7 @@
       If ( Cooling_mode.EQ.1 ) Then
         Total_cooling_capacity = Qc_ratio * Rated_total_cooling_capacity
         Sensible_cooling_capacity = Qsc_ratio * Rated_sensible_cooling_capacity
-        Cooling_power_consumption = Pcratio * Rated_cooling_power_consumption
+        Cooling_power_consumption = Pc_ratio * Rated_cooling_power_consumption
       Else
         Total_cooling_capacity = 0.0
         Sensible_cooling_capacity = 0.0
