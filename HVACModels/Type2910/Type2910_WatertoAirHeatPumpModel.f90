@@ -358,24 +358,49 @@
 	!Sample Code: Call SetNumericalDerivative(1,DTDT1)
 	!Sample Code: Call SetNumericalDerivative(2,DTDT2)
 
-    !Get all dimensionless values
-    Twb_ratio = ( Entering_air_wet_bulb_temperature + 273.15 ) / 283.0
-    Tw_ratio = ( Entering_Water_Temperature + 273.15 ) / 283.0
-    Tdb_ratio = ( Entering_air_dry_bulb_temperature + 273.15 ) / 283.0
-    Va_ratio = Air_volume_flow_rate / Rated_air_volume_flow_rate
-    Vw_ratio = Water_volumetric_flow_rate / Rated_water_volume_flow_rate
+      !Get all dimensionless values
+      Twb_ratio = ( Entering_air_wet_bulb_temperature + 273.15 ) / 283.0
+      Tw_ratio = ( Entering_Water_Temperature + 273.15 ) / 283.0
+      Tdb_ratio = ( Entering_air_dry_bulb_temperature + 273.15 ) / 283.0
+      Va_ratio = Air_volume_flow_rate / Rated_air_volume_flow_rate
+      Vw_ratio = Water_volumetric_flow_rate / Rated_water_volume_flow_rate
+
+      !Calculate the dimensionless outputs
+      Qc_ratio = A1 + A2 * Twb_ratio + A3 * Tw_ratio + A4 * Va_ratio + A5 * Vw_ratio
+      Qsc_ratio = B1 + B2 * Tdb_ratio + B3 * Twb_ratio + B4 * Tw_ratio + B5 * Va_ratio + B6 * Vw_ratio
+      Pc_ratio = C1 + C2 * Twb_ratio + C3 * Tw_ratio + C4 * Va_ratio + C5 * Vw_ratio
+      Qh_ratio = E1 + E2 * Twb_ratio + E3 * Tw_ratio + E4 * Va_ratio + E5 * Vw_ratio
+      Ph_ratio = F1 + F2 * Twb_ratio + F3 * Tw_ratio + F4 * Va_ratio + F5 * Vw_ratio
+
+      !Calculate the outputs
+      If ( Cooling_mode.EQ.1 ) Then
+        Total_cooling_capacity = Qc_ratio * Rated_total_cooling_capacity
+        Sensible_cooling_capacity = Qsc_ratio * Rated_sensible_cooling_capacity
+        Cooling_power_consumption = Pcratio * Rated_cooling_power_consumption
+      Else
+        Total_cooling_capacity = 0.0
+        Sensible_cooling_capacity = 0.0
+        Cooling_power_consumption = 0.0
+      EndIf
+      If ( Heating_mode.EQ.1 ) Then
+        Total_heating_capacity = Qh_ratio * Rated_heating_capacity
+        Heating_power_consumption = Ph_ratio * Rated_heating_power_consumption
+      Else
+        Total_heating_capacity = 0.0
+        Heating_power_consumption = 0.0
+      EndIf
 
 !-----------------------------------------------------------------------------------------------------------------------
 
 !-----------------------------------------------------------------------------------------------------------------------
 !Set the Outputs from this Model (#,Value)
-		Call SetOutputValue(1, 0) ! Total cooling capacity
-		Call SetOutputValue(2, 0) ! Sensible cooling capacity
-		Call SetOutputValue(3, 0) ! Cooling power consumption
-		Call SetOutputValue(4, 0) ! Heat dissipation in cooling mode
-		Call SetOutputValue(5, 0) ! Total heating capacity
-		Call SetOutputValue(6, 0) ! Heating mode power consumption
-		Call SetOutputValue(7, 0) ! Heat absorption in heating mode
+		Call SetOutputValue(1, Total_cooling_capacity) ! Total cooling capacity
+		Call SetOutputValue(2, Sensible_cooling_capacity) ! Sensible cooling capacity
+		Call SetOutputValue(3, Cooling_power_consumption) ! Cooling power consumption
+		Call SetOutputValue(4, Total_cooling_capacity + Cooling_power_consumption) ! Heat dissipation in cooling mode
+		Call SetOutputValue(5, Total_heating_capacity) ! Total heating capacity
+		Call SetOutputValue(6, Heating_power_consumption) ! Heating mode power consumption
+		Call SetOutputValue(7, Total_heating_capacity-Heating_power_consumption) ! Heat absorption in heating mode
 
 !-----------------------------------------------------------------------------------------------------------------------
 
