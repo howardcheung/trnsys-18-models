@@ -18,14 +18,21 @@ noowner
 __
 __
 __
-7
+14
 This is the water-to-air single-speed heat pump model implementation based on the master thesis in
 
 C. C. Tang, “Modeling Packaged Heat Pumps in a Quasi-steady State Energy Simulation Program,” Master Dissertation, Oklahoma State University, Stillwater, OK, 2005.
 
 It models the sensible cooling capacity, the total cooling capacity, the power consumption of the heat pump during its cooling mode and the heating capacity and power consumption in its heating mode due to the change of condenser water inlet temperautre and flow rate and evaporator air inlet dry-bulb temperature, wet-bulb temperature and flow rate with 5 empirical relations.
 
-It is also implemented as the objects in EnergyPlus. Please refer to the documentation of EnergyPlus or the master thesis for the detailed mathematical model.
+It is also implemented as the objects in EnergyPlus. Please refer to the documentation of EnergyPlus or the master thesis for the detailed mathematical model.
+
+Default curve coefficients follow the ones in the large office model in
+
+Goel, S., Athalye, R. A., Wang, W., Zhang, J., Rosenberg, M. I., Xie, Y., … Mendon, V. V. (2014). Enhancements to ASHRAE Standard 90.1 Prototype Building Models (No. PNNL-23269). Richland, WA: Pacific Northwest National Laboratory (PNNL). Retrieved from http://www.osti.gov/scitech/biblio/1129366
+
+
+Please refer to it for details of the coefficients.
 0
 0
 0
