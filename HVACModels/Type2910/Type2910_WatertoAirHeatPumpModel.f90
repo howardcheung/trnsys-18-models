@@ -18,6 +18,8 @@
 !			Rated cooling power consumption	kJ/hr [0;+Inf]
 !			Rated heating capacity	kJ/hr [0;+Inf]
 !			Rated heating power consumption	kJ/hr [0;+Inf]
+!			Rated air volume flow rate	m^3/hr [0;+Inf]
+!			Rated water volume flow rate	m^3/hr [0;+Inf]
 !			A1	- [-Inf;+Inf]
 !			A2	- [-Inf;+Inf]
 !			A3	- [-Inf;+Inf]
@@ -104,6 +106,8 @@
       DOUBLE PRECISION Rated_cooling_power_consumption
       DOUBLE PRECISION Rated_heating_capacity
       DOUBLE PRECISION Rated_heating_power_consumption
+      DOUBLE PRECISION Rated_air_volume_flow_rate
+      DOUBLE PRECISION Rated_water_volume_flow_rate
       DOUBLE PRECISION A1
       DOUBLE PRECISION A2
       DOUBLE PRECISION A3
@@ -177,7 +181,7 @@
       If(getIsFirstCallofSimulation()) Then
 
 		!Tell the TRNSYS Engine How This Type Works
-		Call SetNumberofParameters(31)           !The number of parameters that the the model wants
+		Call SetNumberofParameters(33)           !The number of parameters that the the model wants
 		Call SetNumberofInputs(7)                   !The number of inputs that the the model wants
 		Call SetNumberofDerivatives(0)         !The number of derivatives that the the model wants
 		Call SetNumberofOutputs(7)                 !The number of outputs that the the model produces
@@ -198,32 +202,34 @@
       Rated_cooling_power_consumption = getParameterValue(3)
       Rated_heating_capacity = getParameterValue(4)
       Rated_heating_power_consumption = getParameterValue(5)
-      A1 = getParameterValue(6)
-      A2 = getParameterValue(7)
-      A3 = getParameterValue(8)
-      A4 = getParameterValue(9)
-      A5 = getParameterValue(10)
-      B1 = getParameterValue(11)
-      B2 = getParameterValue(12)
-      B3 = getParameterValue(13)
-      B4 = getParameterValue(14)
-      B5 = getParameterValue(15)
-      B6 = getParameterValue(16)
-      C1 = getParameterValue(17)
-      C2 = getParameterValue(18)
-      C3 = getParameterValue(19)
-      C4 = getParameterValue(20)
-      C5 = getParameterValue(21)
-      E1 = getParameterValue(22)
-      E2 = getParameterValue(23)
-      E3 = getParameterValue(24)
-      E4 = getParameterValue(25)
-      E5 = getParameterValue(26)
-      F1 = getParameterValue(27)
-      F2 = getParameterValue(28)
-      F3 = getParameterValue(29)
-      F4 = getParameterValue(30)
-      F5 = getParameterValue(31)
+      Rated_air_volume_flow_rate = getParameterValue(6)
+      Rated_water_volume_flow_rate = getParameterValue(7)
+      A1 = getParameterValue(8)
+      A2 = getParameterValue(9)
+      A3 = getParameterValue(10)
+      A4 = getParameterValue(11)
+      A5 = getParameterValue(12)
+      B1 = getParameterValue(13)
+      B2 = getParameterValue(14)
+      B3 = getParameterValue(15)
+      B4 = getParameterValue(16)
+      B5 = getParameterValue(17)
+      B6 = getParameterValue(18)
+      C1 = getParameterValue(19)
+      C2 = getParameterValue(20)
+      C3 = getParameterValue(21)
+      C4 = getParameterValue(22)
+      C5 = getParameterValue(23)
+      E1 = getParameterValue(24)
+      E2 = getParameterValue(25)
+      E3 = getParameterValue(26)
+      E4 = getParameterValue(27)
+      E5 = getParameterValue(28)
+      F1 = getParameterValue(29)
+      F2 = getParameterValue(30)
+      F3 = getParameterValue(31)
+      F4 = getParameterValue(32)
+      F5 = getParameterValue(33)
 
 
       Entering_Water_Temperature = GetInputValue(1)
@@ -271,32 +277,34 @@
       Rated_cooling_power_consumption = getParameterValue(3)
       Rated_heating_capacity = getParameterValue(4)
       Rated_heating_power_consumption = getParameterValue(5)
-      A1 = getParameterValue(6)
-      A2 = getParameterValue(7)
-      A3 = getParameterValue(8)
-      A4 = getParameterValue(9)
-      A5 = getParameterValue(10)
-      B1 = getParameterValue(11)
-      B2 = getParameterValue(12)
-      B3 = getParameterValue(13)
-      B4 = getParameterValue(14)
-      B5 = getParameterValue(15)
-      B6 = getParameterValue(16)
-      C1 = getParameterValue(17)
-      C2 = getParameterValue(18)
-      C3 = getParameterValue(19)
-      C4 = getParameterValue(20)
-      C5 = getParameterValue(21)
-      E1 = getParameterValue(22)
-      E2 = getParameterValue(23)
-      E3 = getParameterValue(24)
-      E4 = getParameterValue(25)
-      E5 = getParameterValue(26)
-      F1 = getParameterValue(27)
-      F2 = getParameterValue(28)
-      F3 = getParameterValue(29)
-      F4 = getParameterValue(30)
-      F5 = getParameterValue(31)
+      Rated_air_volume_flow_rate = getParameterValue(6)
+      Rated_water_volume_flow_rate = getParameterValue(7)
+      A1 = getParameterValue(8)
+      A2 = getParameterValue(9)
+      A3 = getParameterValue(10)
+      A4 = getParameterValue(11)
+      A5 = getParameterValue(12)
+      B1 = getParameterValue(13)
+      B2 = getParameterValue(14)
+      B3 = getParameterValue(15)
+      B4 = getParameterValue(16)
+      B5 = getParameterValue(17)
+      B6 = getParameterValue(18)
+      C1 = getParameterValue(19)
+      C2 = getParameterValue(20)
+      C3 = getParameterValue(21)
+      C4 = getParameterValue(22)
+      C5 = getParameterValue(23)
+      E1 = getParameterValue(24)
+      E2 = getParameterValue(25)
+      E3 = getParameterValue(26)
+      E4 = getParameterValue(27)
+      E5 = getParameterValue(28)
+      F1 = getParameterValue(29)
+      F2 = getParameterValue(30)
+      F3 = getParameterValue(31)
+      F4 = getParameterValue(32)
+      F5 = getParameterValue(33)
 
 		
       EndIf
@@ -349,6 +357,13 @@
 	!Sample Code: DTDT2=-2.*T1+11.*T2+21.
 	!Sample Code: Call SetNumericalDerivative(1,DTDT1)
 	!Sample Code: Call SetNumericalDerivative(2,DTDT2)
+
+    !Get all dimensionless values
+    Twb_ratio = ( Entering_air_wet_bulb_temperature + 273.15 ) / 283.0
+    Tw_ratio = ( Entering_Water_Temperature + 273.15 ) / 283.0
+    Tdb_ratio = ( Entering_air_dry_bulb_temperature + 273.15 ) / 283.0
+    Va_ratio = Air_volume_flow_rate / Rated_air_volume_flow_rate
+    Vw_ratio = Water_volumetric_flow_rate / Rated_water_volume_flow_rate
 
 !-----------------------------------------------------------------------------------------------------------------------
 
