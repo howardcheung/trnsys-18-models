@@ -1,10 +1,23 @@
+!**********************************************************************
+!*
+!*    TRNSYS Simulation Model of Single-Speed Water-to-Air Heat Pump
+!*               following Tang (2014) thesis
+!*
+!*                 Howard Cheung and Shengwei Wang
+!*             Dept. of Building Services Engineering
+!*              The Hong Kong Polytechnic University
+!*                          (July, 2017)
+!*                   
+!*
+!*********************************************************************** 
+
       Subroutine Type2910
 
 ! Object: Water-to-air heat pump
 ! Simulation Studio Model: Type2910_WatertoAirHeatPumpModel
 ! 
 
-! Author: Howard Cheung
+! Author: Howard Cheung and Shengwei Wang
 ! Editor: 
 ! Date:	 July 25, 2017
 ! last modified: July 25, 2017
@@ -20,32 +33,32 @@
 !			Rated heating power consumption	kJ/hr [0;+Inf]
 !			Rated air volume flow rate	m^3/hr [0;+Inf]
 !			Rated water volume flow rate	m^3/hr [0;+Inf]
-!			A1	- [-Inf;+Inf]
-!			A2	- [-Inf;+Inf]
-!			A3	- [-Inf;+Inf]
-!			A4	- [-Inf;+Inf]
-!			A5	- [-Inf;+Inf]
-!			B1	- [-Inf;+Inf]
-!			B2	- [-Inf;+Inf]
-!			B3	- [-Inf;+Inf]
-!			B4	- [-Inf;+Inf]
-!			B5	- [-Inf;+Inf]
-!			B6	- [-Inf;+Inf]
-!			C1	- [-Inf;+Inf]
-!			C2	- [-Inf;+Inf]
-!			C3	- [-Inf;+Inf]
-!			C4	- [-Inf;+Inf]
-!			C5	- [-Inf;+Inf]
-!			E1	- [-Inf;+Inf]
-!			E2	- [-Inf;+Inf]
-!			E3	- [-Inf;+Inf]
-!			E4	- [-Inf;+Inf]
-!			E5	- [-Inf;+Inf]
-!			F1	- [-Inf;+Inf]
-!			F2	- [-Inf;+Inf]
-!			F3	- [-Inf;+Inf]
-!			F4	- [-Inf;+Inf]
-!			F5	- [-Inf;+Inf]
+!			A1	- [-Inf;+Inf]     Total Cooling Capacity Coefficient 1
+!			A2	- [-Inf;+Inf]     Total Cooling Capacity Coefficient 2
+!			A3	- [-Inf;+Inf]     Total Cooling Capacity Coefficient 3
+!			A4	- [-Inf;+Inf]     Total Cooling Capacity Coefficient 4
+!			A5	- [-Inf;+Inf]     Total Cooling Capacity Coefficient 5
+!			B1	- [-Inf;+Inf]     Sensible Cooling Capacity Coefficient 1
+!			B2	- [-Inf;+Inf]     Sensible Cooling Capacity Coefficient 2
+!			B3	- [-Inf;+Inf]     Sensible Cooling Capacity Coefficient 3
+!			B4	- [-Inf;+Inf]     Sensible Cooling Capacity Coefficient 4
+!			B5	- [-Inf;+Inf]     Sensible Cooling Capacity Coefficient 5
+!			B6	- [-Inf;+Inf]     Sensible Cooling Capacity Coefficient 6
+!			C1	- [-Inf;+Inf]     Cooling Power Consumption Coefficient 1
+!			C2	- [-Inf;+Inf]     Cooling Power Consumption Coefficient 2
+!			C3	- [-Inf;+Inf]     Cooling Power Consumption Coefficient 3
+!			C4	- [-Inf;+Inf]     Cooling Power Consumption Coefficient 4
+!			C5	- [-Inf;+Inf]     Cooling Power Consumption Coefficient 5
+!			E1	- [-Inf;+Inf]     Heating Capacity Coefficient 1
+!			E2	- [-Inf;+Inf]     Heating Capacity Coefficient 2
+!			E3	- [-Inf;+Inf]     Heating Capacity Coefficient 3
+!			E4	- [-Inf;+Inf]     Heating Capacity Coefficient 4
+!			E5	- [-Inf;+Inf]     Heating Capacity Coefficient 5
+!			F1	- [-Inf;+Inf]     Heating Power Consumption Coefficient 1
+!			F2	- [-Inf;+Inf]     Heating Power Consumption Coefficient 2
+!			F3	- [-Inf;+Inf]     Heating Power Consumption Coefficient 3
+!			F4	- [-Inf;+Inf]     Heating Power Consumption Coefficient 4
+!			F5	- [-Inf;+Inf]     Heating Power Consumption Coefficient 5
 
 ! *** 
 ! *** Model Inputs 

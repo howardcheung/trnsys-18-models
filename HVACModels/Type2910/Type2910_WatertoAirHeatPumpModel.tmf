@@ -3,7 +3,7 @@
 Water-to-air heat pump
 0
 
-Howard Cheung
+Howard Cheung and Shengwei Wang
 The Hong Kong Polytechnic University
 1
 
@@ -29,7 +29,7 @@ It is also implemented as the objects in EnergyPlus. Please refer to the documen
 
 Default curve coefficients follow the ones in the large office model in
 
-Goel, S., Athalye, R. A., Wang, W., Zhang, J., Rosenberg, M. I., Xie, Y., … Mendon, V. V. (2014). Enhancements to ASHRAE Standard 90.1 Prototype Building Models (No. PNNL-23269). Richland, WA: Pacific Northwest National Laboratory (PNNL). Retrieved from http://www.osti.gov/scitech/biblio/1129366
+Goel, S., Athalye, R. A., Wang, W., Zhang, J., Rosenberg, M. I., Xie, Y., … Mendon, V. V. (2014). Enhancements to ASHRAE Standard 90.1 Prototype Building Models (No. PNNL-23269). Richland, WA: Pacific Northwest National Laboratory (PNNL). Retrieved from http://www.osti.gov/scitech/biblio/1129366
 
 
 Please refer to it for details of the coefficients.
