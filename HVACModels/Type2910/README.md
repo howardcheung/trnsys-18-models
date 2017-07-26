@@ -15,13 +15,19 @@ It is also the [Coil:Cooling:WaterToAirHeatPump:EquationFit](http://bigladdersof
 # Correct test result
 A successful run of the .tpf file should give you the following values in the .out file at the last time step in each column:
 * TIME: does not matter
-* Cooling: -1.2737342799999998E+00
-* Sensible: +4.2761596800000019E+00
-* CoolingPower: -7.6630874500000008E+00
-* CoolingHeatRejection: -8.9368217300000001E+00
-* Heating: -5.1265015000000007E+00
-* HeatingPower: -7.7323524900000029E+00
-* HeatingHeatAbsorption: +2.6058509900000022E+00
+* Cooling: +9.6666757773198460E+03
+* Sensible: +4.6248980129450765E+03
+* CoolingPower: +2.9673426531285359E+03
+* CoolingHeatRejection: +1.2634018430448381E+04
+* Heating: +1.7142208795307881E+04
+* HeatingPower: +4.1158432408244107E+03
+* HeatingHeatAbsorption: +1.3026365554483469E+04
+* CoolingAirDB: +1.6657908216707987E+01
+* CoolingAirWB: +1.5084127228301346E+01 
+* CoolingWater: +3.3317846353536694E+01
+* HeatingAirDB: +4.1800491274958155E+01
+* HeatingAirWB: +2.4835716298542472E+01
+* HeatingWater: +2.4548063720272225E+01	
 
 # References
 * Tang, C. C. (2005, May 1). Modeling Packaged Heat Pumps in a Quasi-steady State Energy Simulation Program (Master Dissertation). Oklahoma State University, Stillwater, OK. Retrieved from https://shareok.org/handle/11244/10075

@@ -191,6 +191,7 @@
 
 !    FOR CALLING MOISTURE PROPERTIES
       DOUBLE PRECISION psydat(9)
+      INTEGER ISTAT
 
 !-----------------------------------------------------------------------------------------------------------------------
 
@@ -444,7 +445,7 @@
       psydat(1) = 1.0
       psydat(2) = Entering_air_dry_bulb_temperature
       psydat(3) = Entering_air_wet_bulb_temperature
-      Call MoistAirProperties(CurrentUnit, CurrentType, 1, 1, 1, psydat, 0, 0)
+      Call MoistAirProperties(CurrentUnit, CurrentType, 1, 1, 1, psydat, 0, ISTAT)
       Entering_air_humidratio = psydat(6)
       Entering_air_enthalpy = psydat(7)
       Entering_air_density = psydat(9)
@@ -453,12 +454,12 @@
       If ( Cooling_mode.EQ.1 ) Then
         Cp = 3.9850 * Entering_air_humidratio + 1.005
         Leaving_air_temperature = Entering_air_dry_bulb_temperature - Sensible_cooling_capacity / Air_mass_flow / Cp
-        Leaving_water_temperature = Total_cooling_heat_rejection / Water_mass_flow + Entering_Water_Temperature
+        Leaving_water_temperature = Total_cooling_heat_rejection / Water_mass_flow / 4.18 + Entering_Water_Temperature
         Leaving_air_enthalpy = Entering_air_enthalpy - Total_cooling_capacity / Air_mass_flow
       Else If (Heating_mode.EQ.1) Then
         Cp = 3.9850 * Entering_air_humidratio + 1.005
         Leaving_air_temperature = Entering_air_dry_bulb_temperature + Total_heating_capacity / Air_mass_flow / Cp
-        Leaving_water_temperature = Entering_Water_Temperature - Total_heating_heat_absoprtion / Water_mass_flow
+        Leaving_water_temperature = Entering_Water_Temperature - Total_heating_heat_absoprtion / Water_mass_flow / 4.18
         Leaving_air_enthalpy = Entering_air_enthalpy + Total_heating_capacity / Air_mass_flow
       Else
         Leaving_air_temperature = Entering_air_dry_bulb_temperature
@@ -468,7 +469,7 @@
       psydat(1) = 1.0
       psydat(2) = Leaving_air_temperature
       psydat(7) = Leaving_air_enthalpy
-      Call MoistAirProperties(CurrentUnit, CurrentType, 1, 5, 1, psydat, 0, 0)
+      Call MoistAirProperties(CurrentUnit, CurrentType, 1, 5, 1, psydat, 0, ISTAT)
       Leaving_air_wet_bulb_temperature = psydat(3)
 
 !-----------------------------------------------------------------------------------------------------------------------
