@@ -144,6 +144,23 @@
       DOUBLE PRECISION Cooling_mode
       DOUBLE PRECISION Heating_mode
 
+!    INTERNAL VARIABLES
+      DOUBLE PRECISION Twb_ratio
+      DOUBLE PRECISION Tw_ratio
+      DOUBLE PRECISION Tdb_ratio
+      DOUBLE PRECISION Va_ratio
+      DOUBLE PRECISION Vw_ratio
+      DOUBLE PRECISION Qc_ratio
+      DOUBLE PRECISION Qsc_ratio
+      DOUBLE PRECISION Pc_ratio
+      DOUBLE PRECISION Qh_ratio
+      DOUBLE PRECISION Ph_ratio
+      DOUBLE PRECISION Total_cooling_capacity
+      DOUBLE PRECISION Sensible_cooling_capacity
+      DOUBLE PRECISION Cooling_power_consumption
+      DOUBLE PRECISION Total_heating_capacity
+      DOUBLE PRECISION Heating_power_consumption
+
 !-----------------------------------------------------------------------------------------------------------------------
 
 !-----------------------------------------------------------------------------------------------------------------------

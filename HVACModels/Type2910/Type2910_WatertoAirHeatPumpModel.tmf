@@ -18,11 +18,10 @@ noowner
 __
 __
 __
-8
+7
 This is the water-to-air single-speed heat pump model implementation based on the master thesis in
 
 C. C. Tang, “Modeling Packaged Heat Pumps in a Quasi-steady State Energy Simulation Program,” Master Dissertation, Oklahoma State University, Stillwater, OK, 2005.
-
 
 It models the sensible cooling capacity, the total cooling capacity, the power consumption of the heat pump during its cooling mode and the heating capacity and power consumption in its heating mode due to the change of condenser water inlet temperautre and flow rate and evaporator air inlet dry-bulb temperature, wet-bulb temperature and flow rate with 5 empirical relations.
 
@@ -50,7 +49,7 @@ __
 __
 __
 __
-45
+47
 Entering Water Temperature
 SN
 1
@@ -338,6 +337,36 @@ real
 0
 kJ/hr
 Power
+Rated air volume flow rate
+SN
+1
+Volumetric airflow at the rated condition
+simple
+real
+3
++
+0
++Inf
+[ ; ]
+0
+0
+m^3/hr
+Volumetric Flow Rate
+Rated water volume flow rate
+SN
+1
+Water volume flow rate at the rated condition
+simple
+real
+3
++
+0
++Inf
+[ ; ]
+0
+0
+m^3/hr
+Volumetric Flow Rate
 A1
 SN
 1
@@ -855,7 +884,7 @@ Dimensionless
 1
 100
 0
-30
+32
 0
 
 
